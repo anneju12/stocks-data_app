@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from test_utils import *
+from utils import *
 
 def main():
     st.set_page_config(page_title="Stocks analysis", page_icon=":chart_with_upwards_trend:")
