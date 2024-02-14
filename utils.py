@@ -927,6 +927,3 @@ def insights_page(df):
     pandas_df = df_with_mfi.toPandas()
     st.write('A value above 80 is considered overbought, indicating there may be excessive selling pressure, while a value below 20 is considered oversold, which may suggest a buying opportunity.')
     st.line_chart(pandas_df.set_index('Date')['Money_Flow_Index'])
-
-    
-
