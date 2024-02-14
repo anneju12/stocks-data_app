@@ -4,8 +4,8 @@ from utils import *
 
 def main():
     st.set_page_config(page_title="Stocks analysis", page_icon=":chart_with_upwards_trend:")
+    title = st.sidebar.header(':chart_with_upwards_trend: - STOCKS DATA ANALYSIS - :chart_with_upwards_trend:')
     selected_file = st.sidebar.file_uploader("Choose the file called STOCKS.csv", type=['csv', 'xlsx'])
-
     page = st.sidebar.selectbox("Navigation", ["Exploration","Average of the opening and closing prices","Stock prices changes", "Daily return","Moving Average","Return Rate","More Insights"])
     spark = create_spark_session()
 
@@ -16,7 +16,7 @@ def main():
         file_type = selected_file.name.split('.')[-1]
 
         df = read_file_with_spark(spark, os.path.join("temp", selected_file.name), file_type)
-
+  
         if page == "Exploration":
             explore_page(df)
         elif page == "Average of the opening and closing prices":
@@ -33,6 +33,8 @@ def main():
             insights_page(df)
 
         os.remove(os.path.join("temp", selected_file.name))
+    
+    spark.stop()
 
 if not os.path.exists("temp"):
     os.makedirs("temp")
